@@ -1,0 +1,24 @@
+{
+  "name": "network_api",
+  "version": "1.0.0",
+  "description": "Network API to route ZIP origin-destination pairs and return road segment IDs.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/royhobbstn/network_api.git"
+  },
+  "author": "Daniel Trone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/royhobbstn/network_api/issues"
+  },
+  "homepage": "https://github.com/royhobbstn/network_api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
