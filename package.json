@@ -20,6 +20,8 @@
   "homepage": "https://github.com/royhobbstn/network_api#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "ngraph.graph": "0.0.15",
+    "ngraph.path": "^1.0.3"
   }
 }
