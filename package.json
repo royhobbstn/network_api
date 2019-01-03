@@ -4,6 +4,7 @@
   "description": "Network API to route ZIP origin-destination pairs and return road segment IDs.",
   "main": "index.js",
   "scripts": {
+    "setup": "cd build_network && bash ./build.sh",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

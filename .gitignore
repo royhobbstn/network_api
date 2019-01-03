@@ -62,3 +62,8 @@ typings/
 
 .idea
 
+build_network/*/*
+build_network/*.zip
+build_network/*.geojson
+build_network/*.json
+
