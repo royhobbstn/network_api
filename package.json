@@ -19,8 +19,11 @@
   },
   "homepage": "https://github.com/royhobbstn/network_api#readme",
   "dependencies": {
+    "@turf/turf": "^5.1.6",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "geokdbush": "^1.1.0",
+    "kdbush": "^3.0.0",
     "ngraph.graph": "0.0.15",
     "ngraph.path": "^1.0.3"
   }

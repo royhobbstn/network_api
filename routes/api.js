@@ -25,7 +25,10 @@ network.forEach(segment => {
 });
 console.log('edges added');
 
-const pathFinder = path.aStar(graph);
+const pathFinder = path.aStar(graph,  {
+  distance(fromNode, toNode, link) {
+  return link.data.MINUTES;
+}});
 
 
 
@@ -41,11 +44,22 @@ const appRouter = function(app) {
 
   app.get("/route-one", function(req, res) {
 
-    // ngraph example goes here
-    let foundPath = pathFinder.find("-157.844498,21.292105", "-157.839813,21.293901");
-    console.log(foundPath);
+    let foundPath = pathFinder.find("-157.844498,21.292105", "-158.054916,21.50502");
 
-    return res.status(200).json({});
+    const arr_length_minus_one = foundPath.length - 1;
+    const segments = [];
+
+    for (let i = 0; i < arr_length_minus_one; i++) {
+      const thisId = foundPath[i].id;
+      const nextId = foundPath[i + 1].id;
+      foundPath[i].links.forEach(link => {
+        if (link.id === `${thisId}👉 ${nextId}` || link.id === `${nextId}👉 ${thisId}`) {
+          segments.push(link.data);
+        }
+      });
+    }
+
+    return res.status(200).json(segments);
   })
 
 };
