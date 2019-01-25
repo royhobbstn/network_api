@@ -6,10 +6,8 @@ mv ./FAF3_4_ESRI/FAF3.4_NETWORK.DBF ./FAF3_4_ESRI/FAF3.4_Network.dbf
 
 ogr2ogr -f GeoJSON -t_srs crs:84 ./faf.geojson ./FAF3_4_ESRI/FAF3.4_Network.shp
 
-# map out only fields needed, first and last coord of each segment
-node reduceNetwork.js
-
-# build out zipcode to node lookup
+# needed for zipcode to node lookup
 wget https://raw.githubusercontent.com/royhobbstn/zip-coordinates/master/zip_lookup.json
 
-node createZipNodeLookup.js
+# reduce unneeded part of network, manipulate geo to final products
+node reduceNetwork.js

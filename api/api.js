@@ -4,6 +4,7 @@ const { routeOne, routeMany } = require('../routing/routing');
 const appRouter = function(app) {
 
   app.post("/route-many", function(req, res) {
+    console.log('route many');
 
     const route_payload = req.body;
 
