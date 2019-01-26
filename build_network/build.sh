@@ -11,3 +11,5 @@ wget https://raw.githubusercontent.com/royhobbstn/zip-coordinates/master/zip_loo
 
 # reduce unneeded part of network, manipulate geo to final products
 node reduceNetwork.js
+
+# use map shaper to simplify geojson file (the one to be tiled and displayed)
