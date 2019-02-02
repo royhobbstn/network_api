@@ -6,10 +6,12 @@ const appRouter = function(app) {
   app.post("/route-many", function(req, res) {
     console.log('route many');
 
+    console.time('routeMany');
     const route_payload = req.body;
 
     const multisegments = routeMany(route_payload);
     console.log('all routes retrieved');
+    console.timeEnd('routeMany');
 
     return res.status(200).json(multisegments);
   });

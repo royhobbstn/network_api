@@ -31,9 +31,30 @@ network.forEach(segment => {
 console.log('edges added');
 
 const pathFinder = path.aStar(graph, {
-  distance(fromNode, toNode, link) {
-    return link.data.MINUTES;
-  }
+  distance: (a, b, link)=> {
+    const splitA = a.id.split(',');
+    const splitB = b.id.split(',');
+
+    let aPos = {x: Number(splitA[1]), y: Number(splitA[0])};
+    let bPos = {x: Number(splitB[1]), y: Number(splitB[0])};
+    let dx = aPos.x - bPos.x;
+    let dy = aPos.y - bPos.y;
+    return Math.abs(dx) + Math.abs(dy);
+    // return link.data.MINUTES; // TODO
+    // benchmark Euclidean is 8083 (as Distance and Heuristic)
+    // benchmark Manhattan is 7303 (as Distance and Heuristic)
+    // benchmark without Heuristic is 49162
+  },
+  heuristic: (a, b, link) => {
+    const splitA = a.id.split(',');
+    const splitB = b.id.split(',');
+
+    let aPos = {x: Number(splitA[1]), y: Number(splitA[0])};
+    let bPos = {x: Number(splitB[1]), y: Number(splitB[0])};
+    let dx = aPos.x - bPos.x;
+    let dy = aPos.y - bPos.y;
+    return Math.abs(dx) + Math.abs(dy);
+  },
 });
 
 const routeOne = (zip_from, zip_to) => {
