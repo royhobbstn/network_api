@@ -6,10 +6,13 @@ const path = require('ngraph.path');
 const createGraph = require('ngraph.graph');
 const closest_node = require('../build_network/closest_nodes.json');
 const present = require('present');
+const cheapRuler = require('cheap-ruler');
 
 const cache = {};
 
 const graph = createGraph();
+
+const ruler = cheapRuler(40, 'miles');
 
 // get unique nodes
 const uniqueNodesSet = new Set();
@@ -32,28 +35,16 @@ console.log('edges added');
 
 const pathFinder = path.aStar(graph, {
   distance: (a, b, link)=> {
-    const splitA = a.id.split(',');
-    const splitB = b.id.split(',');
-
-    let aPos = {x: Number(splitA[1]), y: Number(splitA[0])};
-    let bPos = {x: Number(splitB[1]), y: Number(splitB[0])};
-    let dx = aPos.x - bPos.x;
-    let dy = aPos.y - bPos.y;
-    return Math.abs(dx) + Math.abs(dy);
-    // return link.data.MINUTES; // TODO
-    // benchmark Euclidean is 8083 (as Distance and Heuristic)
-    // benchmark Manhattan is 7303 (as Distance and Heuristic)
-    // benchmark without Heuristic is 49162
+    return link.data.MINUTES;
+    // benchmark without Heuristic is 19070 (Animals and Fish option)
+    // benchmark with cheap-ruler distance Heuristic is 4059 (Animals and Fish option)
   },
-  heuristic: (a, b, link) => {
+  heuristic: (a, b) => {
     const splitA = a.id.split(',');
     const splitB = b.id.split(',');
-
-    let aPos = {x: Number(splitA[1]), y: Number(splitA[0])};
-    let bPos = {x: Number(splitB[1]), y: Number(splitB[0])};
-    let dx = aPos.x - bPos.x;
-    let dy = aPos.y - bPos.y;
-    return Math.abs(dx) + Math.abs(dy);
+    const coords_start = [Number(splitA[0]), Number(splitA[1])];
+    const coords_end = [Number(splitB[0]), Number(splitB[1])];
+    return ruler.distance(coords_start, coords_end);
   },
 });
 

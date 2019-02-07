@@ -13,3 +13,6 @@ wget https://raw.githubusercontent.com/royhobbstn/zip-coordinates/master/zip_loo
 node reduceNetwork.js
 
 # use map shaper to simplify geojson file (the one to be tiled and displayed)
+mapshaper basic_network.geojson -simplify 30% -o simple_network.geojson
+
+rm basic_network.geojson
